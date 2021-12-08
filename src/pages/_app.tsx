@@ -14,6 +14,10 @@ function App({ Component, pageProps }: AppProps) {
       <SWRConfig value={swrConfig}>
         <Head>
           <title>자유여행 국가 보기, 우리 어디가?</title>
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0"
+          />
         </Head>
         <GlobalStyle />
         <Component {...pageProps} />
