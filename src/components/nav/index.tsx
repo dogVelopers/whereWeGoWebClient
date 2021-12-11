@@ -22,6 +22,7 @@ const navStyle = css`
 
   display: flex;
   align-items: center;
+  background-color: white;
 `;
 
 const logoWrapperStyle = css`

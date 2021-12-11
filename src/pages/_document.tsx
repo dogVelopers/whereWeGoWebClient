@@ -17,8 +17,8 @@ class WhereWeGoDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
-          {/* <link rel="icon" href="/아이콘.ico" />
-          <meta property="og:image" content="/이미지.png" /> */}
+          <link rel="icon" href="/favicon.ico" />
+          <meta property="og:image" content="/textLogo.svg" />
 
           <meta httpEquiv="Content-type" content="text/html; charset=utf-8" />
           <meta
