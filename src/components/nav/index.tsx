@@ -9,5 +9,4 @@ export default Nav;
 const navStyle = css`
   width: 100%;
   height: 60px;
-  background-color: green;
 `;
