@@ -5,11 +5,20 @@ export function GlobalStyle() {
 }
 
 const globalStyle = css`
+  body {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --brand-color: #94bbff;
+    --footer-bg-color: #555555;
+    --footer-text-color: #cccccc;
+    --layout-padding: 8px 6px;
+    color: var(--text-color);
+  }
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
-    color: #333;
   }
 `;
