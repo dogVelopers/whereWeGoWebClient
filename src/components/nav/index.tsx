@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { css } from '@emotion/react';
 
@@ -6,9 +7,15 @@ import { motion } from 'framer-motion';
 import { logoVariants } from 'constants/motions';
 
 function Nav() {
+  const router = useRouter();
+
+  function onClickLogo() {
+    router.push('/');
+  }
+
   return (
     <nav css={navStyle}>
-      <div css={logoWrapperStyle}>
+      <div css={logoWrapperStyle} onClick={onClickLogo}>
         <div css={logoStyle}>
           <Image src="/icon.svg" alt="logo icon" layout="fill" />
         </div>
