@@ -8,6 +8,7 @@ const globalStyle = css`
   body {
     --bg-color: #ffffff;
     --text-color: #333333;
+    --text-white-color: #ffffff;
     --brand-color: #94bbff;
     --footer-bg-color: #555555;
     --footer-text-color: #cccccc;
@@ -20,5 +21,11 @@ const globalStyle = css`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  button,
+  a {
+    all: unset;
+    cursor: pointer;
   }
 `;
