@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 function Main() {
-  return <main css={mainStyle}>main</main>;
+  return <main css={mainStyle}>for Each something</main>;
 }
 
 export default Main;
