@@ -47,7 +47,7 @@ const navStyle = css`
 
   width: 100%;
   height: 60px;
-  padding: 4px 6px;
+  padding: var(--layout-padding);
 
   display: flex;
   background-color: white;
