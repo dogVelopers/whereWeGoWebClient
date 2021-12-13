@@ -1,6 +1,9 @@
 import { css } from '@emotion/react';
+import useGetNations from 'hooks/api/useGetNations';
 
 function Main() {
+  const { data } = useGetNations();
+  console.log(data);
   return <main css={mainStyle}>for Each something</main>;
 }
 
