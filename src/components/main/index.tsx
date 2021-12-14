@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useGetNations from 'hooks/api/useGetNations';
 import Card from 'components/main/Card';
 import Loading from 'components/common/Loading';
-import { defaultRightFadeInVariants } from 'constants/motions';
+import { staggerHalf } from 'constants/motions';
 
 function Main() {
   const { data } = useGetNations();
@@ -21,7 +21,7 @@ function Main() {
         <motion.main
           key="loaded"
           css={mainStyle}
-          variants={defaultRightFadeInVariants}
+          variants={staggerHalf}
           initial="initial"
           animate="animate"
           exit="exit"
@@ -44,4 +44,10 @@ export default Main;
 const mainStyle = css`
   width: 100%;
   height: 200vh;
+  margin-top: 6px;
+  padding: var(--layout-padding);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
