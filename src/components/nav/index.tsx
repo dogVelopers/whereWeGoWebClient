@@ -51,6 +51,7 @@ const navStyle = css`
 
   display: flex;
   background-color: white;
+  z-index: 1;
 `;
 
 const logoWrapperStyle = css`

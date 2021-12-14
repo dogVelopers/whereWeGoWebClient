@@ -1,21 +1,41 @@
+import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import useGetNations from 'hooks/api/useGetNations';
+import Card from 'components/main/Card';
+import Loading from 'components/common/Loading';
+import { defaultRightFadeInVariants } from 'constants/motions';
 
 function Main() {
-  const { data, error } = useGetNations();
+  const { data } = useGetNations();
 
-  if (error) return <div>error</div>;
-  if (!data) return <div>loading</div>;
+  const router = useRouter();
+  const { nation: queryNation } = router.query;
+
   return (
-    <main css={mainStyle}>
-      {data.map((nation) => (
-        <div key={nation.id}>
-          <h1>{nation.nation_name}</h1>
-          <p>{nation.introduce}</p>
-          <p>{nation.quarantine_policy}</p>
-        </div>
-      ))}
-    </main>
+    <AnimatePresence exitBeforeEnter>
+      {!data ? (
+        <Loading key="loading" />
+      ) : (
+        <motion.main
+          key="loaded"
+          css={mainStyle}
+          variants={defaultRightFadeInVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          {data.map((nation) => (
+            <Card
+              key={nation.id}
+              isSelected={queryNation === nation.nation_name}
+              {...nation}
+            />
+          ))}
+        </motion.main>
+      )}
+    </AnimatePresence>
   );
 }
 
