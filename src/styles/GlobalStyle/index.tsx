@@ -13,6 +13,8 @@ const globalStyle = css`
     --footer-bg-color: #555555;
     --footer-text-color: #cccccc;
     --layout-padding: 8px 6px;
+    --default-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
     color: var(--text-color);
   }
 
