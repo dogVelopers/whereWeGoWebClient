@@ -30,7 +30,7 @@ function Nav() {
           <Image
             className="overlay"
             src="/textLogoColor.svg"
-            alt="logo icon"
+            alt="logo text"
             layout="fill"
           />
         </motion.div>
