@@ -22,6 +22,7 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IState> {
 
   componentDidCatch(error: Error) {
     console.error('Uncaught error:', error.message);
+    console.error(this.state.errorMsg); // 추후에 Sentry 부착
   }
 
   render() {
