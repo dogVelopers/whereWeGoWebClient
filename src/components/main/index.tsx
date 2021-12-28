@@ -3,18 +3,34 @@ import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 
+import { INation } from 'types';
+import { staggerHalf } from 'constants/motions';
 import useGetNations from 'hooks/api/useGetNations';
 import Card from 'components/main/Card';
 import Loading from 'components/common/Loading';
-import { staggerHalf } from 'constants/motions';
-import { INation } from 'types';
-import SelectedCard from './SelectedCard';
+import SelectedCard from 'components/main/SelectedCard';
 
 function Main() {
   const { data } = useGetNations();
 
   const router = useRouter();
   const { nation: queryNation } = router.query;
+
+  const [selectedNation, setSelectedNation] = useState<INation | null>(null);
+
+  useEffect(() => {
+    if (!data) return;
+    if (!queryNation) {
+      setSelectedNation(null);
+      return;
+    }
+
+    data.forEach((eachNation) => {
+      if (eachNation.nation_name === queryNation) {
+        setSelectedNation(eachNation);
+      }
+    });
+  }, [data, queryNation]);
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -31,14 +47,12 @@ function Main() {
         >
           <AnimateSharedLayout>
             {data.map((nation) => (
-              <Card
-                key={nation.id}
-                isSelected={nation.nation_name === queryNation}
-                {...nation}
-              />
+              <Card key={nation.id} {...nation} />
             ))}
 
-            <AnimatePresence>{queryNation && <SelectedCard />}</AnimatePresence>
+            <AnimatePresence>
+              {selectedNation && <SelectedCard {...selectedNation} />}
+            </AnimatePresence>
           </AnimateSharedLayout>
         </motion.main>
       )}
@@ -51,7 +65,6 @@ export default Main;
 const mainStyle = css`
   position: relative;
   width: 100%;
-  height: 200vh;
   margin-top: 6px;
   padding: var(--layout-padding);
 

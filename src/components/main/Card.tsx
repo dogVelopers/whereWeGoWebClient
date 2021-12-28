@@ -7,26 +7,30 @@ import { motion } from 'framer-motion';
 import { INation } from 'types';
 import { defaultRightFadeInVariants } from 'constants/motions';
 
-interface ICardProps extends INation {
-  isSelected: boolean;
-}
+interface ICardProps extends INation {}
 
 function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
   return (
     <Link href={`/${nation_name}`} passHref={true} scroll={false}>
       <motion.div
-        layoutId={`card ${id}`}
+        layoutId={`card-${id}`}
         css={containerStyle}
         variants={defaultRightFadeInVariants}
       >
-        <div css={imageContainerStyle}>
+        <motion.div
+          layoutId={`card-image-container-${id}`}
+          css={imageContainerStyle}
+        >
           <img css={imageStyle} src={image_url} alt={nation_name} />
 
-          <div css={titleContainerStyle}>
+          <motion.div
+            layoutId={`card-title-container-${id}`}
+            css={titleContainerStyle}
+          >
             <h1 css={continentNameStyle}>{continent_name}</h1>
             <h2 css={nationNameStyle}>{nation_name}</h2>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </Link>
   );
@@ -35,12 +39,14 @@ function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
 export default Card;
 
 const containerStyle = css`
+  position: relative;
   width: 100%;
   height: 200px;
 `;
 
 const imageContainerStyle = css`
-  position: relative;
+  position: absolute;
+  width: 100%;
   height: 100%;
   border-radius: 24px;
   overflow: hidden;
