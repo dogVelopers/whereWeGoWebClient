@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 
 import { INation } from 'types';
 import { defaultRightFadeInVariants } from 'constants/motions';
-import CardContent from 'components/main/CardContent';
 
 interface ICardProps extends INation {}
 
@@ -38,13 +37,6 @@ function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
 }
 
 export default Card;
-
-const c = css`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: block;
-`;
 
 const containerStyle = css`
   position: relative;
