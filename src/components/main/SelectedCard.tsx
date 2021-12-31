@@ -1,7 +1,11 @@
+import { MouseEvent } from 'react';
+import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
 import { motion } from 'framer-motion';
 
 import { INation } from 'types';
+
+const OVERLAY_ID: string = 'overlay';
 
 interface ISelectedCardProps extends INation {}
 
@@ -11,6 +15,15 @@ function SelectedCard({
   nation_name,
   continent_name,
 }: ISelectedCardProps) {
+  const router = useRouter();
+
+  function onClickBackDrop(e: MouseEvent<HTMLDivElement>) {
+    const { id } = e.target as HTMLDivElement;
+
+    if (id !== OVERLAY_ID) return;
+    router.push('/');
+  }
+
   return (
     <>
       <motion.div
@@ -21,7 +34,7 @@ function SelectedCard({
         transition={{ duration: 0.2, delay: 0.15 }}
       ></motion.div>
 
-      <div css={containerStyle}>
+      <div css={containerStyle} id={OVERLAY_ID} onClick={onClickBackDrop}>
         <motion.div layoutId={`card-${id}`} css={cardContainerStyle}>
           <motion.div
             layoutId={`card-image-container-${id}`}
@@ -51,7 +64,7 @@ const backdropStyle = css`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 2;
 `;
 
@@ -63,7 +76,7 @@ const containerStyle = css`
   height: 100%;
   padding: 80px 0;
   overflow: hidden;
-  z-index: 2;
+  z-index: 999;
 `;
 
 const cardContainerStyle = css`

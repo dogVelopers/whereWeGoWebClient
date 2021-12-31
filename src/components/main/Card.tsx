@@ -42,14 +42,14 @@ const containerStyle = css`
   position: relative;
   width: 100%;
   height: 200px;
+  border-radius: 24px;
+  overflow: hidden;
 `;
 
 const imageContainerStyle = css`
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 24px;
-  overflow: hidden;
 `;
 
 const imageStyle = css`
