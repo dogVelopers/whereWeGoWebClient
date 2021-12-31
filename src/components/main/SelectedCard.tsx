@@ -11,47 +11,68 @@ function SelectedCard({
   nation_name,
   continent_name,
 }: ISelectedCardProps) {
-  // 여기서 nation name 기준으로 data에서 찾기
-  // 매칭되는 layoutId 마다 연결하기
   return (
-    <motion.div
-      layoutId={`card-${id}`}
-      css={containerStyle}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.15 } }}
-      transition={{ duration: 0.2, delay: 0.15 }}
-    >
+    <>
       <motion.div
-        layoutId={`card-image-container-${id}`}
-        css={imageContainerStyle}
-      >
-        <img css={imageStyle} src={image_url} alt={nation_name} />
-      </motion.div>
+        css={backdropStyle}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.15 } }}
+        transition={{ duration: 0.2, delay: 0.15 }}
+      ></motion.div>
 
-      <motion.div
-        layoutId={`card-title-container-${id}`}
-        css={titleContainerStyle}
-      >
-        <h1 css={continentNameStyle}>{continent_name}</h1>
-        <h2 css={nationNameStyle}>{nation_name}</h2>
-      </motion.div>
-    </motion.div>
+      <div css={containerStyle}>
+        <motion.div layoutId={`card-${id}`} css={cardContainerStyle}>
+          <motion.div
+            layoutId={`card-image-container-${id}`}
+            css={imageContainerStyle}
+          >
+            <img css={imageStyle} src={image_url} alt={nation_name} />
+          </motion.div>
+
+          <motion.div
+            layoutId={`card-title-container-${id}`}
+            css={titleContainerStyle}
+          >
+            <h1 css={continentNameStyle}>{continent_name}</h1>
+            <h2 css={nationNameStyle}>{nation_name}</h2>
+          </motion.div>
+        </motion.div>
+      </div>
+    </>
   );
 }
 
 export default SelectedCard;
 
+const backdropStyle = css`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+`;
+
 const containerStyle = css`
   position: fixed;
   top: 0;
   left: 0;
-  transform: translate(calc(50vw - 50%)) !important;
+  width: 100%;
+  height: 100%;
+  padding: 80px 0;
+  overflow: hidden;
+  z-index: 2;
+`;
+
+const cardContainerStyle = css`
+  position: relative;
+  margin: 0 auto;
   max-width: 428px;
   width: 100%;
-  height: 100vh;
-  z-index: 1;
-  background-color: green;
+  height: 100%;
+  background-color: var(--bg-color);
   pointer-events: auto;
 `;
 
