@@ -1,9 +1,11 @@
 import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
+import { debounce } from 'lodash';
 
 import { INation } from 'types';
+import useWheelScroll from 'hooks/useWheelScroll';
 
 const OVERLAY_ID: string = 'overlay';
 
@@ -24,6 +26,17 @@ function SelectedCard({
     router.push('/');
   }
 
+  const y = useMotionValue(0);
+  function checkSwipeToDismiss() {
+    y.get() > 150 && router.push('/');
+  }
+  const debouncedCheckSwipeToDismiss = debounce(checkSwipeToDismiss, 100);
+
+  const { onWheel } = useWheelScroll({
+    y,
+    onWheelCallback: checkSwipeToDismiss,
+  });
+
   return (
     <>
       <motion.div
@@ -35,12 +48,24 @@ function SelectedCard({
       ></motion.div>
 
       <div css={containerStyle} id={OVERLAY_ID} onClick={onClickBackDrop}>
-        <motion.div layoutId={`card-${id}`} css={cardContainerStyle}>
+        <motion.div
+          layoutId={`card-${id}`}
+          css={cardContainerStyle}
+          drag="y"
+          onWheel={onWheel}
+          style={{ y }}
+          onDrag={debouncedCheckSwipeToDismiss}
+        >
           <motion.div
             layoutId={`card-image-container-${id}`}
             css={imageContainerStyle}
           >
-            <img css={imageStyle} src={image_url} alt={nation_name} />
+            <img
+              draggable="false"
+              css={imageStyle}
+              src={image_url}
+              alt={nation_name}
+            />
           </motion.div>
 
           <motion.div
@@ -100,6 +125,7 @@ const imageStyle = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 `;
 
 const titleContainerStyle = css`
