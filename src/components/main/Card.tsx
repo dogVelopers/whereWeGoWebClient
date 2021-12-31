@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 import { INation } from 'types';
 import { defaultRightFadeInVariants } from 'constants/motions';
+import CardContent from 'components/main/CardContent';
 
 interface ICardProps extends INation {}
 
@@ -22,14 +23,14 @@ function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
           style={{ originX: 0, originY: 0 }}
         >
           <img css={imageStyle} src={image_url} alt={nation_name} />
-        </motion.div>
 
-        <motion.div
-          layoutId={`card-title-container-${id}`}
-          css={titleContainerStyle}
-        >
-          <h1 css={continentNameStyle}>{continent_name}</h1>
-          <h2 css={nationNameStyle}>{nation_name}</h2>
+          <motion.div
+            layoutId={`card-title-container-${id}`}
+            css={titleContainerStyle}
+          >
+            <h1 css={continentNameStyle}>{continent_name}</h1>
+            <h2 css={nationNameStyle}>{nation_name}</h2>
+          </motion.div>
         </motion.div>
       </motion.div>
     </Link>

@@ -6,6 +6,7 @@ import { motion, useMotionValue } from 'framer-motion';
 import { INation } from 'types';
 import { selectedCardDragTransition } from 'constants/motions';
 import useSelectedCardDrag from 'hooks/useSelectedCardDrag';
+import CardContent from 'components/main/CardContent';
 
 const OVERLAY_ID: string = 'overlay';
 
@@ -16,6 +17,8 @@ function SelectedCard({
   image_url,
   nation_name,
   continent_name,
+  introduce,
+  quarantine_policy,
 }: ISelectedCardProps) {
   const router = useRouter();
 
@@ -62,15 +65,20 @@ function SelectedCard({
             css={imageContainerStyle}
           >
             <img css={imageStyle} src={image_url} alt={nation_name} />
+
+            <motion.div
+              layoutId={`card-title-container-${id}`}
+              css={titleContainerStyle}
+            >
+              <h1 css={continentNameStyle}>{continent_name}</h1>
+              <h2 css={nationNameStyle}>{nation_name}</h2>
+            </motion.div>
           </motion.div>
 
-          <motion.div
-            layoutId={`card-title-container-${id}`}
-            css={titleContainerStyle}
-          >
-            <h1 css={continentNameStyle}>{continent_name}</h1>
-            <h2 css={nationNameStyle}>{nation_name}</h2>
-          </motion.div>
+          <CardContent
+            introduce={introduce}
+            quarantine_policy={quarantine_policy}
+          />
         </motion.div>
       </div>
     </>
@@ -93,8 +101,8 @@ const containerStyle = css`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   padding: 80px 0;
   overflow: hidden;
   z-index: 999;
@@ -108,12 +116,14 @@ const cardContainerStyle = css`
   height: 100%;
   background-color: var(--bg-color);
   pointer-events: auto;
+  overflow-y: scroll;
 `;
 
 const imageContainerStyle = css`
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
-  height: 30%;
+  height: 200px;
   overflow: hidden;
 `;
 
