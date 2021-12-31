@@ -1,6 +1,10 @@
-import { Variants } from 'framer-motion';
+import { Inertia, Variants } from 'framer-motion';
 
 export const defaultEasing = [0.6, -0.05, 0.01, 0.99];
+
+export const selectedCardDragTransition: Partial<
+  Omit<Inertia, 'type' | 'velocity'>
+> = { bounceStiffness: 800, bounceDamping: 100 };
 
 export const staggerHalf: Variants = {
   animate: { transition: { staggerChildren: 0.05 } },

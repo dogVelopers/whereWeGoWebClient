@@ -2,10 +2,10 @@ import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
 import { motion, useMotionValue } from 'framer-motion';
-import { debounce } from 'lodash';
 
 import { INation } from 'types';
-import useWheelScroll from 'hooks/useWheelScroll';
+import { selectedCardDragTransition } from 'constants/motions';
+import useSelectedCardDrag from 'hooks/useSelectedCardDrag';
 
 const OVERLAY_ID: string = 'overlay';
 
@@ -20,6 +20,7 @@ function SelectedCard({
   const router = useRouter();
 
   function onClickBackDrop(e: MouseEvent<HTMLDivElement>) {
+    if (!(e.target as HTMLDivElement).id) return;
     const { id } = e.target as HTMLDivElement;
 
     if (id !== OVERLAY_ID) return;
@@ -27,14 +28,12 @@ function SelectedCard({
   }
 
   const y = useMotionValue(0);
-  function checkSwipeToDismiss() {
-    y.get() > 150 && router.push('/');
+  function dragTransitionEndCallback() {
+    router.push('/');
   }
-  const debouncedCheckSwipeToDismiss = debounce(checkSwipeToDismiss, 100);
-
-  const { onWheel } = useWheelScroll({
+  const { debouncedSwipeToDismiss, onDragTransitionEnd } = useSelectedCardDrag({
     y,
-    onWheelCallback: checkSwipeToDismiss,
+    dragTransitionEndCallback,
   });
 
   return (
@@ -49,23 +48,20 @@ function SelectedCard({
 
       <div css={containerStyle} id={OVERLAY_ID} onClick={onClickBackDrop}>
         <motion.div
-          layoutId={`card-${id}`}
           css={cardContainerStyle}
+          layoutId={`card-${id}`}
           drag="y"
-          onWheel={onWheel}
           style={{ y }}
-          onDrag={debouncedCheckSwipeToDismiss}
+          dragTransition={selectedCardDragTransition}
+          dragSnapToOrigin={true}
+          onDrag={debouncedSwipeToDismiss}
+          onDragTransitionEnd={onDragTransitionEnd}
         >
           <motion.div
             layoutId={`card-image-container-${id}`}
             css={imageContainerStyle}
           >
-            <img
-              draggable="false"
-              css={imageStyle}
-              src={image_url}
-              alt={nation_name}
-            />
+            <img css={imageStyle} src={image_url} alt={nation_name} />
           </motion.div>
 
           <motion.div
@@ -115,7 +111,7 @@ const cardContainerStyle = css`
 `;
 
 const imageContainerStyle = css`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 30%;
   overflow: hidden;

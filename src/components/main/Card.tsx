@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 
 import { css } from '@emotion/react';
@@ -20,16 +19,17 @@ function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
         <motion.div
           layoutId={`card-image-container-${id}`}
           css={imageContainerStyle}
+          style={{ originX: 0, originY: 0 }}
         >
           <img css={imageStyle} src={image_url} alt={nation_name} />
+        </motion.div>
 
-          <motion.div
-            layoutId={`card-title-container-${id}`}
-            css={titleContainerStyle}
-          >
-            <h1 css={continentNameStyle}>{continent_name}</h1>
-            <h2 css={nationNameStyle}>{nation_name}</h2>
-          </motion.div>
+        <motion.div
+          layoutId={`card-title-container-${id}`}
+          css={titleContainerStyle}
+        >
+          <h1 css={continentNameStyle}>{continent_name}</h1>
+          <h2 css={nationNameStyle}>{nation_name}</h2>
         </motion.div>
       </motion.div>
     </Link>
@@ -37,6 +37,13 @@ function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
 }
 
 export default Card;
+
+const c = css`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+`;
 
 const containerStyle = css`
   position: relative;
@@ -47,7 +54,7 @@ const containerStyle = css`
 `;
 
 const imageContainerStyle = css`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
 `;
@@ -56,6 +63,7 @@ const imageStyle = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 `;
 
 const titleContainerStyle = css`
