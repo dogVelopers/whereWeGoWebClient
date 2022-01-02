@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 function useGaPageview() {
   const router = useRouter();
   useEffect(() => {
-    function handleRouteChange() {}
+    function handleRouteChange(url: string) {
+      pageview(url);
+    }
 
     router.events.on('routeChangeComplete', handleRouteChange);
 
