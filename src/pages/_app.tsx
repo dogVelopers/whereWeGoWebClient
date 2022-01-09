@@ -8,7 +8,11 @@ import swrConfig from 'lib/swrConfig';
 
 import { GlobalStyle } from 'styles/GlobalStyle';
 
+import useGaPageview from 'hooks/ga/useGaPageview';
+
 function App({ Component, pageProps }: AppProps) {
+  useGaPageview();
+
   return (
     <RecoilRoot>
       <SWRConfig value={swrConfig}>
