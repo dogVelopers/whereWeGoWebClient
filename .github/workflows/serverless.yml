@@ -2,7 +2,7 @@ name: deploy web client
 
 on:
   push:
-    branches: master
+    branches: main
 jobs:
   build:
     runs-on: ubuntu-latest
