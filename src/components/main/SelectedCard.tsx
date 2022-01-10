@@ -77,7 +77,7 @@ function SelectedCard({
 
           <CardContent
             introduce={introduce}
-            quarantine_policy={quarantinePolicy}
+            quarantinePolicy={quarantinePolicy}
           />
         </motion.div>
       </div>
