@@ -8,9 +8,9 @@ import { defaultRightFadeInVariants } from 'constants/motions';
 
 interface ICardProps extends INation {}
 
-function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
+function Card({ id, imageUrl, nationName, continentName }: ICardProps) {
   return (
-    <Link href={`/${nation_name}`} passHref={true} scroll={false}>
+    <Link href={`/${nationName}`} passHref={true} scroll={false}>
       <motion.div
         layoutId={`card-${id}`}
         css={containerStyle}
@@ -21,14 +21,14 @@ function Card({ id, image_url, nation_name, continent_name }: ICardProps) {
           css={imageContainerStyle}
           style={{ originX: 0, originY: 0 }}
         >
-          <img css={imageStyle} src={image_url} alt={nation_name} />
+          <img css={imageStyle} src={imageUrl} alt={nationName} />
 
           <motion.div
             layoutId={`card-title-container-${id}`}
             css={titleContainerStyle}
           >
-            <h1 css={continentNameStyle}>{continent_name}</h1>
-            <h2 css={nationNameStyle}>{nation_name}</h2>
+            <h1 css={continentNameStyle}>{continentName}</h1>
+            <h2 css={nationNameStyle}>{nationName}</h2>
           </motion.div>
         </motion.div>
       </motion.div>

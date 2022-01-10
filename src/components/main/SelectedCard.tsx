@@ -14,11 +14,11 @@ interface ISelectedCardProps extends INation {}
 
 function SelectedCard({
   id,
-  image_url,
-  nation_name,
-  continent_name,
+  imageUrl,
+  nationName,
+  continentName,
   introduce,
-  quarantine_policy,
+  quarantinePolicy,
 }: ISelectedCardProps) {
   const router = useRouter();
 
@@ -64,20 +64,20 @@ function SelectedCard({
             layoutId={`card-image-container-${id}`}
             css={imageContainerStyle}
           >
-            <img css={imageStyle} src={image_url} alt={nation_name} />
+            <img css={imageStyle} src={imageUrl} alt={nationName} />
 
             <motion.div
               layoutId={`card-title-container-${id}`}
               css={titleContainerStyle}
             >
-              <h1 css={continentNameStyle}>{continent_name}</h1>
-              <h2 css={nationNameStyle}>{nation_name}</h2>
+              <h1 css={continentNameStyle}>{continentName}</h1>
+              <h2 css={nationNameStyle}>{nationName}</h2>
             </motion.div>
           </motion.div>
 
           <CardContent
             introduce={introduce}
-            quarantine_policy={quarantine_policy}
+            quarantine_policy={quarantinePolicy}
           />
         </motion.div>
       </div>
