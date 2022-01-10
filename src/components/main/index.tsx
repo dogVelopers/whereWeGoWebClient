@@ -26,7 +26,7 @@ function Main() {
     }
 
     data.forEach((eachNation) => {
-      if (eachNation.nation_name === queryNation) {
+      if (eachNation.nationName === queryNation) {
         setSelectedNation(eachNation);
       }
     });
