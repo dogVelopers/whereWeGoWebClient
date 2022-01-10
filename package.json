@@ -6,7 +6,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "serverless",
     "cypress": "cypress open"
   },
   "dependencies": {
@@ -40,7 +39,6 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.3",
-    "serverless": "^2.59.0"
+    "typescript": "^4.5.3"
   }
 }
