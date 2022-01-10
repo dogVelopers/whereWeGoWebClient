@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
 import { INation } from 'types';
 
-type cardContentPropsType = Pick<INation, 'introduce' | 'quarantine_policy'>;
+type cardContentPropsType = Pick<INation, 'introduce' | 'quarantinePolicy'>;
 
-function CardContent({ introduce, quarantine_policy }: cardContentPropsType) {
+function CardContent({ introduce, quarantinePolicy }: cardContentPropsType) {
   return (
     <div css={contentWrapperStyle}>
       <p css={titleStyle}>소개</p>
       <p css={contentStyle}>{introduce}</p>
       <hr css={hrStyle} />
       <p css={titleStyle}>격리 수칙</p>
-      <p css={contentStyle}>{quarantine_policy}</p>
+      <p css={contentStyle}>{quarantinePolicy}</p>
     </div>
   );
 }
