@@ -6,15 +6,19 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "deploy": "serverless",
     "cypress": "cypress open"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
     "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.178",
     "@types/recoil": "^0.0.9",
     "axios": "^0.24.0",
     "framer-motion": "^5.4.3",
+    "lodash": "^4.17.21",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -23,6 +27,7 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",
+    "@types/gtag.js": "^0.0.8",
     "@types/node": "16.11.12",
     "@types/react": "17.0.37",
     "cypress": "^9.1.1",
@@ -35,6 +40,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.3"
+    "typescript": "^4.5.3",
+    "serverless": "^2.59.0"
   }
 }

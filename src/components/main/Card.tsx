@@ -1,54 +1,62 @@
+import Link from 'next/link';
+
 import { css } from '@emotion/react';
 import { motion } from 'framer-motion';
 
-import { defaultRightFadeInVariants } from 'constants/motions';
 import { INation } from 'types';
+import { defaultRightFadeInVariants } from 'constants/motions';
 
-interface ICardProps extends INation {
-  isSelected: boolean;
-}
+interface ICardProps extends INation {}
 
-function Card({
-  isSelected,
-  nation_name,
-  continent_name,
-  image_url,
-  introduce,
-  quarantine_policy,
-}: ICardProps) {
+function Card({ id, imageUrl, nationName, continentName }: ICardProps) {
   return (
-    <motion.div css={containerStyle} variants={defaultRightFadeInVariants}>
-      <div css={imageContainerStyle}>
-        <img css={imageStyle} src={image_url} alt={nation_name} />
+    <Link href={`/${nationName}`} passHref={true} scroll={false}>
+      <motion.div
+        layoutId={`card-${id}`}
+        css={containerStyle}
+        variants={defaultRightFadeInVariants}
+      >
+        <motion.div
+          layoutId={`card-image-container-${id}`}
+          css={imageContainerStyle}
+          style={{ originX: 0, originY: 0 }}
+        >
+          <img css={imageStyle} src={imageUrl} alt={nationName} />
 
-        <div css={titleContainerStyle}>
-          <h1 css={continentNameStyle}>{continent_name}</h1>
-          <h2 css={nationNameStyle}>{nation_name}</h2>
-        </div>
-      </div>
-    </motion.div>
+          <motion.div
+            layoutId={`card-title-container-${id}`}
+            css={titleContainerStyle}
+          >
+            <h1 css={continentNameStyle}>{continentName}</h1>
+            <h2 css={nationNameStyle}>{nationName}</h2>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </Link>
   );
 }
 
 export default Card;
 
 const containerStyle = css`
+  position: relative;
   width: 100%;
   height: 200px;
+  border-radius: 24px;
+  overflow: hidden;
 `;
 
 const imageContainerStyle = css`
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 24px;
-  overflow: hidden;
 `;
 
 const imageStyle = css`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 `;
 
 const titleContainerStyle = css`
@@ -62,6 +70,8 @@ const titleContainerStyle = css`
 const continentNameStyle = css`
   font-size: 0.875rem;
   line-height: 100%;
+  color: white;
+  transition: color 0.3s;
 `;
 
 const nationNameStyle = css`
