@@ -1,6 +1,9 @@
 .env
 .vscode
 
+.serverless
+.serverless_nextjs
+
 # dependencies
 /node_modules
 /.pnp
