@@ -6,7 +6,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "serverless",
     "cypress": "cypress open"
   },
   "dependencies": {
@@ -19,7 +18,7 @@
     "axios": "^0.24.0",
     "framer-motion": "^5.4.3",
     "lodash": "^4.17.21",
-    "next": "12.0.7",
+    "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "recoil": "^0.5.2",
@@ -40,7 +39,6 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.3",
-    "serverless": "^2.59.0"
+    "typescript": "^4.5.3"
   }
 }
