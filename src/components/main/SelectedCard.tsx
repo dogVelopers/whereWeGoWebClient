@@ -22,18 +22,23 @@ function SelectedCard({
 }: ISelectedCardProps) {
   const router = useRouter();
 
+  function closeModal() {
+    router.push('/', undefined, { scroll: false });
+  }
+
   function onClickBackDrop(e: MouseEvent<HTMLDivElement>) {
     if (!(e.target as HTMLDivElement).id) return;
     const { id } = e.target as HTMLDivElement;
 
     if (id !== OVERLAY_ID) return;
-    router.push('/');
+    closeModal();
   }
 
   const y = useMotionValue(0);
   function dragTransitionEndCallback() {
-    router.push('/');
+    closeModal();
   }
+
   const { debouncedSwipeToDismiss, onDragTransitionEnd } = useSelectedCardDrag({
     y,
     dragTransitionEndCallback,
@@ -73,6 +78,10 @@ function SelectedCard({
               <h1 css={continentNameStyle}>{continentName}</h1>
               <h2 css={nationNameStyle}>{nationName}</h2>
             </motion.div>
+
+            <motion.button onClick={closeModal} css={closeButtonStyle}>
+              X
+            </motion.button>
           </motion.div>
 
           <CardContent
@@ -140,6 +149,24 @@ const titleContainerStyle = css`
   left: 14px;
   color: var(--text-white-color);
   text-shadow: var(--default-shadow);
+`;
+
+const closeButtonStyle = css`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 30px;
+  height: 30px;
+  background-color: var(--text-white-color);
+  text-align: center;
+  border-radius: 50%;
+  transition: box-shadow 0.3s;
+
+  &:hover,
+  &:active {
+    box-shadow: var(--default-shadow);
+  }
 `;
 
 const continentNameStyle = css`
