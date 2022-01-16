@@ -3,7 +3,7 @@
 describe('test: not found', () => {
   it('visit not found', () => {
     cy.visit({
-      url: 'http://localhost:3000/notfound/notfound',
+      url: '/notfound/notfound',
       failOnStatusCode: false,
     });
     cy.contains('죄송합니다');
@@ -12,7 +12,7 @@ describe('test: not found', () => {
   });
   it('click to main btn', () => {
     cy.visit({
-      url: 'http://localhost:3000/notfound/notfound',
+      url: '/notfound/notfound',
       failOnStatusCode: false,
     });
     cy.get('button').contains('메인 페이지로 가기');
