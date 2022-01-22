@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer css={footerStyle}>
       <h1 css={titleStyle}>FESPA</h1>
-      <p css={copyrightStyle}>copyright &copy; 2021 by FESPA</p>
+      <p css={copyrightStyle}>copyright &copy; 2022 by FESPA</p>
     </footer>
   );
 }
