@@ -112,16 +112,22 @@ const containerStyle = css`
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 80px 0;
+
   overflow: hidden;
   z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const cardContainerStyle = css`
   position: relative;
-  margin: 0 auto;
+  margin: auto;
   max-width: 428px;
-  width: 100%;
+  width: calc(100% - 8px);
+
+  max-height: 600px;
   height: 100%;
   background-color: var(--bg-color);
   pointer-events: auto;
