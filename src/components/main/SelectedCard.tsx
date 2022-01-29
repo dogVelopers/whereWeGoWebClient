@@ -125,7 +125,7 @@ const cardContainerStyle = css`
   position: relative;
   margin: auto;
   max-width: 428px;
-  width: 100%;
+  width: calc(100% - 8px);
 
   max-height: 600px;
   height: 100%;
