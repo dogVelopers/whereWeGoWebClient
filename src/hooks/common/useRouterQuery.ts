@@ -4,14 +4,23 @@ function useRouterQuery(key: string) {
   const router = useRouter();
 
   function getRouterQuery() {
-    return router.query[key];
+    const query = new URLSearchParams(router.asPath.slice(1));
+    return query.get(key);
   }
 
   function setRouterQuery(value: string) {
-    router.push(router.pathname, { query: { [key]: value } });
+    const nextQuery = { ...router.query, [key]: value };
+    router.query = nextQuery;
+    router.push(router.pathname, { query: nextQuery });
   }
 
-  return { getRouterQuery, setRouterQuery };
+  function clearRouterQuery() {
+    Object.keys(router.query).filter((queryKey) => queryKey !== key);
+
+    router.push(router.pathname, { query: router.query });
+  }
+
+  return { getRouterQuery, setRouterQuery, clearRouterQuery };
 }
 
 export default useRouterQuery;
