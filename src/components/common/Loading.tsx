@@ -1,4 +1,4 @@
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes, Theme } from '@emotion/react';
 import { motion } from 'framer-motion';
 
 import { defaultRightFadeInVariants } from 'constants/motions';
@@ -18,10 +18,10 @@ function Loading() {
 
 export default Loading;
 
-const wrapperStyle = css`
+const wrapperStyle = (theme: Theme) => css`
   width: 100%;
   height: 100vh;
-  background-color: var(--bg-color);
+  background-color: ${theme.color.bgColor};
 
   display: flex;
   justify-content: center;
@@ -37,12 +37,12 @@ const spinnerAnimation = keyframes`
     }
 `;
 
-const spinnerStyle = css`
+const spinnerStyle = (theme: Theme) => css`
   display: inline-block;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: solid 12px rgba(148, 187, 255, 0.2);
-  border-top: solid 12px var(--brand-color);
+  border-top: solid 12px ${theme.color.brandColor};
   animation: ${spinnerAnimation} 1.5s infinite;
 `;

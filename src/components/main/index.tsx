@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 
 import { INation } from 'types';
@@ -62,11 +62,11 @@ function Main() {
 
 export default Main;
 
-const mainStyle = css`
+const mainStyle = (theme: Theme) => css`
   position: relative;
   width: 100%;
   margin-top: 6px;
-  padding: var(--layout-padding);
+  padding: ${theme.padding.layoutPadding};
 
   display: flex;
   flex-direction: column;

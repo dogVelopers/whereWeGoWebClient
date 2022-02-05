@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 import { motion } from 'framer-motion';
 
 import { INation } from 'types';
@@ -59,12 +59,12 @@ const imageStyle = css`
   pointer-events: none;
 `;
 
-const titleContainerStyle = css`
+const titleContainerStyle = (theme: Theme) => css`
   position: absolute;
   top: 14px;
   left: 14px;
-  color: var(--text-white-color);
-  text-shadow: var(--default-shadow);
+  color: ${theme.color.textWhiteColor};
+  text-shadow: ${theme.shadow.default};
 `;
 
 const continentNameStyle = css`

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 
 import { motion } from 'framer-motion';
 import { logoVariants } from 'constants/motions';
@@ -41,13 +41,13 @@ function Nav() {
 
 export default Nav;
 
-const navStyle = css`
+const navStyle = (theme: Theme) => css`
   position: sticky;
   top: 0;
 
   width: 100%;
   height: 60px;
-  padding: var(--layout-padding);
+  padding: ${theme.padding.layoutPadding};
 
   display: flex;
   background-color: white;

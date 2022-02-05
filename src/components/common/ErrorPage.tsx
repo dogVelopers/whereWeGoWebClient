@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 
 import { motion } from 'framer-motion';
 import { staggerOne, defaultRightFadeInVariants } from 'constants/motions';
@@ -76,10 +76,10 @@ const dscStyle = css`
   margin-bottom: 1.5rem;
 `;
 
-const btnStyle = css`
+const btnStyle = (theme: Theme) => css`
   padding: 18px 22px;
-  color: var(--text-white-color);
-  background-color: var(--brand-color);
+  color: ${theme.color.textWhiteColor};
+  background-color: ${theme.color.brandColor};
   border-radius: 8px;
   font-size: 0.875rem;
   transition: transform 0.3s;

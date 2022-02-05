@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 import { INation } from 'types';
 
 type cardContentPropsType = Pick<INation, 'introduce' | 'quarantinePolicy'>;
@@ -17,18 +17,18 @@ function CardContent({ introduce, quarantinePolicy }: cardContentPropsType) {
 
 export default CardContent;
 
-const contentWrapperStyle = css`
+const contentWrapperStyle = (theme: Theme) => css`
   position: relative;
   width: 100%;
   height: auto;
-  background-color: var(--bg-color);
+  background-color: ${theme.color.bgColor};
   padding: 14px 10px 8px 10px;
 
   word-break: keep-all;
 `;
 
-const titleStyle = css`
-  color: var(--brand-color);
+const titleStyle = (theme: Theme) => css`
+  color: ${theme.color.brandColor};
   font-weight: bold;
   font-size: 0.825rem;
   margin-bottom: 8px;
@@ -38,9 +38,9 @@ const contentStyle = css`
   font-size: 1rem;
 `;
 
-const hrStyle = css`
+const hrStyle = (theme: Theme) => css`
   width: 100%;
   opacity: 0.2;
-  color: var(--brand-color);
+  color: ${theme.color.brandColor};
   margin: 24px 0;
 `;
