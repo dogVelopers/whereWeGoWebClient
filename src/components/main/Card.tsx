@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { css, Theme } from '@emotion/react';
 import { motion } from 'framer-motion';
@@ -9,8 +10,10 @@ import { defaultRightFadeInVariants } from 'constants/motions';
 interface ICardProps extends INation {}
 
 function Card({ id, imageUrl, nationName, continentName }: ICardProps) {
+  const { query } = useRouter();
+
   return (
-    <Link href={`/${nationName}`} passHref={true} scroll={false}>
+    <Link href={{ pathname: `/${nationName}`, query }} passHref scroll={false}>
       <motion.div
         layoutId={`card-${id}`}
         css={containerStyle}

@@ -8,6 +8,7 @@ import useRouterQuery from 'hooks/common/useRouterQuery';
 function useGetNations() {
   const { getRouterQuery: getRouterContinent } = useRouterQuery(CONTINENT);
   const continentValue = getRouterContinent();
+
   const { data } = useSWR<INation[]>(
     continentValue
       ? `/nation-infos/?continentName=${continentValue}`

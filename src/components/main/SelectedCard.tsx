@@ -23,7 +23,7 @@ function SelectedCard({
   const router = useRouter();
 
   function closeModal() {
-    router.push('/', undefined, { scroll: false });
+    router.back();
   }
 
   function onClickBackDrop(e: MouseEvent<HTMLDivElement>) {
