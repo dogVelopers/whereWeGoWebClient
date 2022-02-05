@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 
 function Footer() {
   return (
@@ -11,12 +11,12 @@ function Footer() {
 
 export default Footer;
 
-const footerStyle = css`
+const footerStyle = (theme: Theme) => css`
   width: 100%;
   height: 100px;
-  background-color: var(--footer-bg-color);
-  color: var(--footer-text-color);
-  padding: var(--layout-padding);
+  background-color: ${theme.color.footerBgColor};
+  color: ${theme.color.footerTextColor};
+  padding: ${theme.padding.layoutPadding};
 `;
 
 const titleStyle = css`

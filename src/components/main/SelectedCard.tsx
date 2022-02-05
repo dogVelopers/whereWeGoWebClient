@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 import { motion, useMotionValue } from 'framer-motion';
 
 import { INation } from 'types';
@@ -121,7 +121,7 @@ const containerStyle = css`
   align-items: center;
 `;
 
-const cardContainerStyle = css`
+const cardContainerStyle = (theme: Theme) => css`
   position: relative;
   margin: auto;
   max-width: 428px;
@@ -129,7 +129,7 @@ const cardContainerStyle = css`
 
   max-height: 600px;
   height: 100%;
-  background-color: var(--bg-color);
+  background-color: ${theme.color.bgColor};
   pointer-events: auto;
   overflow-y: scroll;
 `;
@@ -149,29 +149,29 @@ const imageStyle = css`
   pointer-events: none;
 `;
 
-const titleContainerStyle = css`
+const titleContainerStyle = (theme: Theme) => css`
   position: absolute;
   top: 26px;
   left: 14px;
-  color: var(--text-white-color);
-  text-shadow: var(--default-shadow);
+  color: ${theme.color.textWhiteColor};
+  text-shadow: ${theme.shadow.default};
 `;
 
-const closeButtonStyle = css`
+const closeButtonStyle = (theme: Theme) => css`
   position: absolute;
   top: 14px;
   right: 14px;
 
   width: 30px;
   height: 30px;
-  background-color: var(--text-white-color);
+  background-color: ${theme.color.textWhiteColor};
   text-align: center;
   border-radius: 50%;
   transition: box-shadow 0.3s;
 
   &:hover,
   &:active {
-    box-shadow: var(--default-shadow);
+    box-shadow: ${theme.shadow.default};
   }
 `;
 
