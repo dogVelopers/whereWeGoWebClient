@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import useRouterQuery from 'hooks/common/useRouterQuery';
 
 interface ICategoryElementProps {
@@ -12,7 +12,8 @@ function CategoryElement({
   defaultValue,
   values,
 }: ICategoryElementProps) {
-  const { setRouterQuery, clearRouterQuery } = useRouterQuery(name);
+  const { getRouterQuery, setRouterQuery, clearRouterQuery } =
+    useRouterQuery(name);
 
   function onChange(e: ChangeEvent<HTMLSelectElement>) {
     const { value } = e.target;
@@ -26,7 +27,7 @@ function CategoryElement({
   }
 
   return (
-    <select name={name} onChange={onChange}>
+    <select name={name} onChange={onChange} defaultValue={getRouterQuery()}>
       {values.map((value) => (
         <option key={value} value={value}>
           {value}
