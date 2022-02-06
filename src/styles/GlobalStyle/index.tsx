@@ -30,4 +30,8 @@ const globalStyle = css`
     all: unset;
     cursor: pointer;
   }
+
+  select {
+    all: unset;
+  }
 `;
