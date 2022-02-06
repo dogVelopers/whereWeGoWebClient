@@ -9,6 +9,7 @@ import useGetNations from 'hooks/api/useGetNations';
 import Card from 'components/main/Card';
 import Loading from 'components/common/Loading';
 import SelectedCard from 'components/main/SelectedCard';
+import Category from 'components/Category';
 
 function Main() {
   const { data } = useGetNations();
@@ -45,6 +46,8 @@ function Main() {
           animate="animate"
           exit="exit"
         >
+          <Category />
+
           <AnimateSharedLayout>
             {data.map((nation) => (
               <Card key={nation.id} {...nation} />
