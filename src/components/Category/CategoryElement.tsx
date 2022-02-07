@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 import { css, Theme } from '@emotion/react';
 
 import useRouterQuery from 'hooks/common/useRouterQuery';
+import useCategoryState from 'hooks/Category/useCategoryState';
 
 interface ICategoryElementProps {
   name: string;
@@ -16,6 +17,8 @@ function CategoryElement({
 }: ICategoryElementProps) {
   const { getRouterQuery, setRouterQuery, clearRouterQuery } =
     useRouterQuery(name);
+
+  const { query } = useCategoryState({ getRouterQuery, defaultValue });
 
   function onChange(e: ChangeEvent<HTMLSelectElement>) {
     const { value } = e.target;
@@ -33,7 +36,8 @@ function CategoryElement({
       css={selectStyle}
       name={name}
       onChange={onChange}
-      defaultValue={getRouterQuery()}
+      value={query}
+      defaultValue={query}
     >
       {values.map((value) => (
         <option key={value} value={value}>
