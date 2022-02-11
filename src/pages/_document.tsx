@@ -53,6 +53,14 @@ class WhereWeGoDocument extends Document {
             }}
           />
 
+          {/* for google adsense */}
+
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7865364121078598"
+            crossOrigin="anonymous"
+          ></script>
+
           {/* for channel talk */}
           <script
             dangerouslySetInnerHTML={{
