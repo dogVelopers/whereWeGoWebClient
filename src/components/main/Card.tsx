@@ -14,7 +14,7 @@ function Card({ id, imageUrl, nationName, continentName }: ICardProps) {
 
   return (
     <Link href={{ pathname: `/${nationName}`, query }} passHref scroll={false}>
-      <motion.div
+      <motion.a
         layoutId={`card-${id}`}
         css={containerStyle}
         variants={defaultRightFadeInVariants}
@@ -34,7 +34,7 @@ function Card({ id, imageUrl, nationName, continentName }: ICardProps) {
             <h2 css={nationNameStyle}>{nationName}</h2>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </motion.a>
     </Link>
   );
 }
